@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprenda Mais - Reforço Escolar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #667eea;
+        }
+
+        /* Disciplinas */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .subject-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .subject-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .subject-card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Planos */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .plan-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .plan-card:hover {
+            transform: scale(1.05);
+        }
+
+        .plan-card.featured {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .plan-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .plan-card .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .plan-card ul {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .plan-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .plan-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .plan-card.featured li:before {
+            color: white;
+        }
+
+        /* Depoimentos */
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #667eea;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Formulário de Contato */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            animation: slideDown 0.3s;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #667eea;
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">📚 Aprenda Mais</div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#disciplinas">Disciplinas</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Reforço Escolar de Qualidade</h1>
+        <p>Aprenda no seu ritmo com professores qualificados</p>
+        <button class="cta-button" onclick="openModal()">Agende uma Aula Grátis</button>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>Alunos Atendidos</p>
+            </div>
+            <div class="stat-item">
+                <h3>95%</h3>
+                <p>Taxa de Aprovação</p>
+            </div>
+            <div class="stat-item">
+                <h3>50+</h3>
+                <p>Professores Qualificados</p>
+            </div>
+            <div class="stat-item">
+                <h3>4.9⭐</h3>
+                <p>Avaliação Média</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disciplinas -->
+    <section id="disciplinas">
+        <h2>Nossas Disciplinas</h2>
+        <div class="subjects-grid">
+            <div class="subject-card" onclick="showSubjectInfo('Matemática')">
+                <div class="subject-icon">🔢</div>
+                <h3>Matemática</h3>
+                <p>Do básico ao avançado, álgebra, geometria e cálculo</p>
+            </div>
+            <div class="subject-card" onclick="showSubjectInfo('Português')">
+                <div class="subject-icon">📖</div>
+                <h3>Português</h3>
+                <p>Gramática, redação e interpretação de textos</p>
+            </div>
+            <div class="subject-card" onclick="showSubjectInfo('Física')">
+                <div class="subject-icon">⚛️</div>
+                <h3>Física</h3>
+                <p>Mecânica, eletricidade, óptica e termodinâmica</p>
+            </div>
+            <div class="subject-card" onclick="showSubjectInfo('Química')">
+                <div class="subject-icon">🧪</div>
+                <h3>Química</h3>
+                <p>Orgânica, inorgânica e físico-química</p>
+            </div>
+            <div class="subject-card" onclick="showSubjectInfo('Biologia')">
+                <div class="subject-icon">🧬</div>
+                <h3>Biologia</h3>
+                <p>Genética, ecologia, fisiologia e evolução</p>
+            </div>
+            <div class="subject-card" onclick="showSubjectInfo('História')">
+                <div class="subject-icon">🏛️</div>
+                <h3>História</h3>
+                <p>Do Brasil e mundial, antiga à contemporânea</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planos -->
+    <section id="planos">
+        <h2>Nossos Planos</h2>
+        <div class="plans-grid">
+            <div class="plan-card">
+                <h3>Básico</h3>
+                <div class="price">R$ 99<span style="font-size: 1rem;">/mês</span></div>
+                <ul>
+                    <li>4 aulas por mês</li>
+                    <li>1 disciplina</li>
+                    <li>Material didático digital</li>
+                    <li>Suporte por WhatsApp</li>
+                </ul>
+                <button class="cta-button" onclick="selectPlan('Básico')">Escolher Plano</button>
+            </div>
+            <div class="plan-card featured">
+                <h3>Premium</h3>
+                <div class="price">R$ 179<span style="font-size: 1rem;">/mês</span></div>
+                <ul>
+                    <li>8 aulas por mês</li>
+                    <li>Até 3 disciplinas</li>
+                    <li>Material didático completo</li>
+                    <li>Suporte prioritário</li>
+                    <li>Exercícios personalizados</li>
+                </ul>
+                <button class="cta-button" onclick="selectPlan('Premium')">Escolher Plano</button>
+            </div>
+            <div class="plan-card">
+                <h3>Intensivo</h3>
+                <div class="price">R$ 299<span style="font-size: 1rem;">/mês</span></div>
+                <ul>
+                    <li>12 aulas por mês</li>
+                    <li>Todas as disciplinas</li>
+                    <li>Material completo impresso</li>
+                    <li>Suporte 24/7</li>
+                    <li>Simulados semanais</li>
+                    <li>Acompanhamento individual</li>
+                </ul>
+                <button class="cta-button" onclick="selectPlan('Intensivo')">Escolher Plano</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section id="depoimentos">
+        <h2>O Que Dizem Nossos Alunos</h2>
+        <div class="testimonials-container">
+            <div class="testimonial">
+                <p>"Melhorei muito em matemática! As aulas são dinâmicas e os professores têm muita paciência. Recomendo!"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">MA</div>
+                    <div>
+                        <strong>Maria Silva</strong>
+                        <p>Aluna do 9º ano</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <p>"Passei no vestibular graças ao reforço em física e química. O material é excelente e os professores são muito qualificados."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">JS</div>
+                    <div>
+                        <strong>João Santos</strong>
+                        <p>Aluno do 3º ano</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <p>"Minha filha estava com dificuldade em português e agora está tirando notas ótimas. Super indico!"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">AP</div>
+                    <div>
+                        <strong>Ana Paula</strong>
+                        <p>Mãe de aluna</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato">
+        <h2>Entre em Contato</h2>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" name="telefone" required>
+            </div>
+            <div class="form-group">
+                <label for="disciplina">Disciplina de Interesse</label>
+                <select id="disciplina" name="disciplina" required>
+                    <option value="">Selecione...</option>
+                    <option value="matematica">Matemática</option>
+                    <option value="portugues">Português</option>
+                    <option value="fisica">Física</option>
+                    <option value="quimica">Química</option>
+                    <option value="biologia">Biologia</option>
+                    <option value="historia">História</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="submit-button">Enviar Mensagem</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Aprenda Mais - Reforço Escolar. Todos os direitos reservados.</p>
+        <p>📧 contato@aprendamais.com.br | 📱 (11) 99999-9999</p>
+    </footer>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 style="color: #667eea; margin-bottom: 1rem;">Agende Sua Aula Grátis</h2>
+            <form onsubmit="handleModalSubmit(event)">
+                <div class="form-group">
+                    <label for="modal-nome">Nome</label>
+                    <input type="text" id="modal-nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-email">E-mail</label>
+                    <input type="email" id="modal-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-disciplina">Disciplina</label>
+                    <select id="modal-disciplina" required>
+                        <option value="">Selecione...</option>
+                        <option value="matematica">Matemática</option>
+                        <option value="portugues">Português</option>
+                        <option value="fisica">Física</option>
+                        <option value="quimica">Química</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Agendar Aula</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Modal Functions
+        function openModal() {
+            document.getElementById('myModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Form Submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            const nome = document.getElementById('nome').value;
+            alert(`Obrigado, ${nome}! Em breve entraremos em contato.`);
+            event.target.reset();
+        }
+
+        function handleModalSubmit(event) {
+            event.preventDefault();
+            const nome = document.getElementById('modal-nome').value;
+            alert(`Ótimo, ${nome}! Sua aula grátis foi agendada. Entraremos em contato em breve!`);
+            closeModal();
+            event.target.reset();
+        }
+
+        // Subject Info
+        function showSubjectInfo(subject) {
+            alert(`Você selecionou: ${subject}\n\nEntre em contato para saber mais sobre nossas aulas!`);
+        }
+
+        // Plan Selection
+        function selectPlan(plan) {
+            alert(`Você escolheu o plano ${plan}!\n\nPreencha o formulário de contato para finalizar sua matrícula.`);
+            document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    // Close mobile menu if open
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        // Animation on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 1s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.subject-card, .plan-card, .testimonial').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
